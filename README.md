@@ -44,7 +44,6 @@ The template allows to deploy a rich set of AKS features such as:
 - [Azure Monitor for containers add-on](https://docs.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-enable-new-cluster)
 - [Application Gateway Ingress Controller add-on](https://azure.github.io/application-gateway-kubernetes-ingress/)
 - [Dynamic allocation of IPs and enhanced subnet support](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#dynamic-allocation-of-ips-and-enhanced-subnet-support-preview)
-- [Managed NAT Gateway](https://docs.microsoft.com/en-us/azure/aks/nat-gateway)
 
 For a sample on how to use the Application Gateway Ingress Controller in a multi-tenant AKS cluster, see this [sample](https://github.com/paolosalvatori/aks-multi-tenant-agic).
 
