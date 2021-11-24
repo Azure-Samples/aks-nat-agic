@@ -1,0 +1,86 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-args
+data:
+  URL: api.ipify.org
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-script
+data:
+  test.sh: |
+    while true
+    do
+        IP=$(curl --silent $URL)
+        echo "Public IP Address: $IP"
+        sleep 1
+    done
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nat-gateway
+  labels:
+    app: nat-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nat-gateway
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: nat-gateway
+    spec:
+      topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: topology.kubernetes.io/zone
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: nat-gateway
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app: nat-gateway
+      nodeSelector:
+        "beta.kubernetes.io/os": linux
+      containers:
+      - name: nginx
+        image: nginx
+        command:
+        - /bin/sh
+        - -c
+        - |
+          /scripts/test.sh
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: test-args
+              key: URL
+        volumeMounts:
+        - mountPath: /scripts
+          name: test-script
+          readOnly: true
+      volumes:
+      - name: test-script
+        configMap:
+          name: test-script
+          defaultMode: 0777
