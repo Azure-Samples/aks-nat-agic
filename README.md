@@ -22,6 +22,7 @@ products:
 name: Create an Azure Kubernetes Service cluster with Azure NAT Gateway and Azure Application Gateway
 description: This sample shows how to create an AKS cluster that uses a NAT Gateway for outbound connections and Application Gateway Ingress Controller.
 urlFragment: aks-nat-agic
+azureDeploy: "https://raw.githubusercontent.com/Azure-Samples/aks-nat-agic/main/templates/azuredeploy.json"
 ---
 
 # Create an Azure Kubernetes Service cluster with Azure NAT Gateway and Azure Application Gateway #
@@ -46,6 +47,12 @@ The template allows to deploy a rich set of AKS features such as:
 - [Dynamic allocation of IPs and enhanced subnet support](https://docs.microsoft.com/en-us/azure/aks/configure-azure-cni#dynamic-allocation-of-ips-and-enhanced-subnet-support-preview)
 
 For a sample on how to use the Application Gateway Ingress Controller in a multi-tenant AKS cluster, see this [project](https://github.com/paolosalvatori/aks-multi-tenant-agic).
+
+## Deploy to Azure
+
+You can use the following button to deploy the demo to your Azure subscription:
+
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Faks-nat-agic%2Fmain%2Ftemplates%2Fazuredeploy.json%3Ftoken%3DAAIW4AOWATWNQLL2JZKDBAK63EOOU)
 
 ## Architecture ##
 
