@@ -62,7 +62,7 @@ This diagram shows the overall architecture:
 
 The ARM template deploys:
 
-- A new virtual network with 4 subnets:
+- A new virtual network with five subnets:
   - **AksSubnet**: this subnet is used for the AKS cluster worker nodes. The VMSS of both the system and user node pools will be created in this subnet. 
   - **PodSubnet**: this subnet is used to allot private IP addresses to pods of both the system and user node pools.
   - **VmSubnet**: hosts the jumpbox virtual machine and private endpoints
