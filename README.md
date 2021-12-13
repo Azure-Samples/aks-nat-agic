@@ -18,7 +18,7 @@ products:
 - azure-key-vault
 - azure-log-analytics
 - azure-virtual-machines
-- azure-devops
+- azure-application-gateway
 name: Create an Azure Kubernetes Service cluster with Azure NAT Gateway and Azure Application Gateway
 description: This sample shows how to create an AKS cluster that uses a NAT Gateway for outbound connections and Application Gateway Ingress Controller.
 urlFragment: aks-nat-agic
